@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+echo '
+source ~/.vim/vimrcs/basic.vim
+source ~/.vim/vimrcs/plugins_cfg.vim
+' > ~/.vimrc
+
+echo "Installed the nr_vim configuration successfully."
