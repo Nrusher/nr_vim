@@ -1,9 +1,48 @@
 #!/bin/sh
 set -e
 
+if [ -e ~/.vim ]; then
+	rm -rf ~/.vim.bak
+    mv ~/.vim ~/.vim.bak
+fi
+
+if [ -e ~/.vimrc ]; then
+	rm -rf ~/.vimrc.bak
+    mv ~/.vimrc ~/.vimrc.bak
+fi
+
+mkdir ~/.vim
+
+if [ $1 = "basic" ]; then
+
+echo '
+source ~/.vim/vimrcs/basic.vim
+' > ~/.vimrc
+
+elif [ $1 = "enhanced" ]; then
+
+./unfreeze
+
 echo '
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/plugins_cfg.vim
 ' > ~/.vimrc
+
+    cp -r ./* ~/.vim
+
+	if [ -e ~/.config/coc ]; then
+		rm -rf ~/.config/coc.bak
+		mv ~/.config/coc ~/.config/coc.bak
+	fi
+
+	mkdir -p ~/.config/coc
+	cp -r ./coc/ ~/.config/coc/
+	rm -rf ./coc/
+
+	sudo apt -y install ctags
+    sudo apt -y install cscope
+    sudo snap install clangd --classic
+    sudo snap install node --classic
+fi
 
 echo "Installed the nr_vim configuration successfully."

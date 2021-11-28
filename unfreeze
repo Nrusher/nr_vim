@@ -1,0 +1,2 @@
+tar -xvf ./plugged.tar.gz
+tar -xvf ./coc.tar.gz

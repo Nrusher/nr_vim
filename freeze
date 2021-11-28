@@ -1,2 +1,7 @@
 #!/bin/sh
 tar -zcvf plugged.tar.gz ./plugged/
+if [ -e ~/.config/coc ]; then
+	cp -r ~/.config/coc ./
+	tar -zcvf coc.tar.gz ./coc/
+	rm -rf ./coc
+fi
