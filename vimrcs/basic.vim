@@ -44,6 +44,8 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
+nmap <leader>R :w<CR>:source ~/.vim/vimrcs/basic.vim<CR>:source ~/.vim/vimrcs/plugins_cfg.vim<CR>:source ~/.vimrc<CR>
+
 " Show number
 set number
 
@@ -55,8 +57,8 @@ highlight CursorColumn cterm=NONE ctermbg=239 ctermfg=NONE guibg=NONE guifg=NONE
 
 set nocompatible
 set mouse=n
-set number
 
+nmap <C-f> :/expand('<cword>')<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -181,8 +183,8 @@ set noswapfile
 set smarttab
 
 " 1 tab == 8 spaces
-set shiftwidth=8
-set tabstop=8
+set shiftwidth=4
+set tabstop=4
 
 " show tab and space
 set list
@@ -197,13 +199,26 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-fun! ChangTabSize()
-	set expandtab
-	set shiftwidth=4
-	set tabstop=4
+fun! ChangTab(tab_size, ep)
+    if a:tab_size == 4
+        set shiftwidth=4
+        set tabstop=4
+    elseif a:tab_size == 8
+        set shiftwidth=8
+        set tabstop=8
+    endif
+
+    if a:ep == 1
+        set expandtab
+    elseif a:eq == 0
+        set noexpandtab
+    endif
 endfun
 
-map <leader>ct :call change_tab_size()
+map <leader>ct4 :call ChangTab(4,0)<CR>
+map <leader>ct41 :call ChangTab(4,1)<CR>
+map <leader>ct8 :call ChangTab(8,0)<CR>
+map <leader>ct81 :call ChangTab(8,1)<CR>
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -240,11 +255,10 @@ map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
+map <leader>tt :tabnew<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -268,7 +282,6 @@ endtry
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -340,6 +353,8 @@ map <leader>x :e ~/buffer.md<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+nmap f g*
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -392,3 +407,4 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
