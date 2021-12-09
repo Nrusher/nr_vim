@@ -13,22 +13,32 @@ fi
 
 mkdir ~/.vim
 
+./unfreeze
+
+cp -r ./* ~/.vim
+
+
 if [ $1 = "basic" ]; then
 
 echo '
 source ~/.vim/vimrcs/basic.vim
 ' > ~/.vimrc
 
-elif [ $1 = "enhanced" ]; then
-
-./unfreeze
+elif [ $1 = "normal" ]; then
 
 echo '
+let nr_vim_mode="normal"
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/plugins_cfg.vim
 ' > ~/.vimrc
 
-    cp -r ./* ~/.vim
+elif [ $1 = "enhanced" ]; then
+
+echo '
+let nr_vim_mode="enhanced"
+source ~/.vim/vimrcs/basic.vim
+source ~/.vim/vimrcs/plugins_cfg.vim
+' > ~/.vimrc
 
 	if [ -e ~/.config/coc ]; then
 		rm -rf ~/.config/coc.bak
@@ -39,10 +49,11 @@ source ~/.vim/vimrcs/plugins_cfg.vim
 	cp -r ./coc/ ~/.config/coc/
 	rm -rf ./coc/
 
-	sudo apt -y install ctags
-    sudo apt -y install cscope
-    sudo snap install clangd --classic
-    sudo snap install node --classic
+	# try to install some packages which is needed
+	# sudo apt -y install ctags
+	# sudo apt -y install cscope
+	# sudo snap install clangd --classic
+	# sudo snap install node --classic
 fi
 
 echo "Installed the nr_vim configuration successfully."

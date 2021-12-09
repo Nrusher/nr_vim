@@ -35,7 +35,7 @@ au FocusGained,BufEnter * checktime
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
+let mapleader = "\\"
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -210,15 +210,16 @@ fun! ChangTab(tab_size, ep)
 
     if a:ep == 1
         set expandtab
-    elseif a:eq == 0
+    elseif a:ep == 0
         set noexpandtab
     endif
 endfun
 
-map <leader>ct4 :call ChangTab(4,0)<CR>
-map <leader>ct41 :call ChangTab(4,1)<CR>
-map <leader>ct8 :call ChangTab(8,0)<CR>
-map <leader>ct81 :call ChangTab(8,1)<CR>
+map <leader>ct4 :call ChangTab(4, 0)<CR>
+map <leader>ct4e :call ChangTab(4, 1)<CR>
+map <leader>ct8 :call ChangTab(8, 0)<CR>
+map <leader>ct8e :call ChangTab(8, 1)<CR>
+map <leader>rt :%retab<CR>
 
 """"""""""""""""""""""""""""""
 " => Visual mode related

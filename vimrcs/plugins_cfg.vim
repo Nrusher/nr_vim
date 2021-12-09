@@ -28,39 +28,12 @@ Plug 'scrooloose/nerdtree'
 
 Plug 'rhysd/vim-clang-format'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if nr_vim_mode == 'enhanced'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 
 " Initialize plugin system
 call plug#end()
-
-" ============================
-" coc.nvim
-" ============================
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=100
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" insert coc_plugs here
-let coc_global_extensions =  [
-	\ 'coc-json',
-	\ 'coc-vimlsp',
-	\ 'coc-python',
-	\ 'coc-clangd',
-	\ 'coc-marketplace']
-
-" coc-marketplace:  
-" (1) use CocList marketplace to find some plug
-" B
-" (2) slecet a plug press enter, then we can install it
 
 " ============================
 " indentline
@@ -112,13 +85,42 @@ if has("cscope")
 
 let cs_auto_jump=0
 
-nmap \s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap \g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap \c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap \t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap \e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap \f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap \i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap \d :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap \S :cs find t struct <C-R>=expand("<cword>")<CR> {<CR>
+nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>S :cs find t struct <C-R>=expand("<cword>")<CR> {<CR>
 
+if nr_vim_mode == 'enhanced'
+" ============================
+" coc.nvim
+" ============================
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=100
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" insert coc_plugs here
+let coc_global_extensions =  [
+    \ 'coc-json',
+    \ 'coc-vimlsp',
+    \ 'coc-python',
+    \ 'coc-clangd',
+    \ 'coc-marketplace']
+
+" coc-marketplace:  
+" (1) use CocList marketplace to find some plug
+" (2) slecet a plug press enter, then we can install it
+endif
