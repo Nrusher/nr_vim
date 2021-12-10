@@ -31,6 +31,7 @@ enhanced version:
 ./install normal
 
 # 安装enhanced版本
+./install_pkgs
 ./install enhanced
 ```
 执行完成后即可使用。
@@ -61,6 +62,7 @@ enhanced version:
 - \w: 保存
 
 ### 3.2 normal
+
 - \g: 跳转到函数定义
 - \s: 查找
 - ctrl-p: 模糊查询文件

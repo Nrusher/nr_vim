@@ -1,0 +1,6 @@
+# try to install some packages which is needed
+sudo apt -y install ctags
+sudo apt -y install cscope
+sudo snap install clangd --classic
+sudo snap install node --classic
+
