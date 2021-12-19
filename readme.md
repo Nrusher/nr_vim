@@ -60,6 +60,7 @@ enhanced version:
 - \-Enter: 取消高亮
 - 0: 移动到行首
 - \w: 保存
+- \cp: 切换到拷贝模式，不显示无用字符，方便拷贝
 
 ### 3.2 normal
 
@@ -67,4 +68,4 @@ enhanced version:
 - \s: 查找
 - ctrl-p: 模糊查询文件
 - ctrl-t: 打开文件目录
-
+- \gb: git blame当前文件

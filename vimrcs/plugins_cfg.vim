@@ -59,6 +59,10 @@ let g:clang_format#detect_style_file=1
 " ============================
 nmap <C-t> :NERDTreeToggle<CR>
 
+" ============================
+" vim-fugitive
+" ============================
+nmap <leader>gb :Git blame<CR>
 
 " ============================
 " cscope  

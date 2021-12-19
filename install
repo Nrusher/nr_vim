@@ -21,13 +21,14 @@ cp -r ./* ~/.vim
 if [ $1 = "basic" ]; then
 
 echo '
+let g:nr_vim_mode="basic"
 source ~/.vim/vimrcs/basic.vim
 ' > ~/.vimrc
 
 elif [ $1 = "normal" ]; then
 
 echo '
-let nr_vim_mode="normal"
+let g:nr_vim_mode="normal"
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/plugins_cfg.vim
 ' > ~/.vimrc
@@ -35,7 +36,7 @@ source ~/.vim/vimrcs/plugins_cfg.vim
 elif [ $1 = "enhanced" ]; then
 
 echo '
-let nr_vim_mode="enhanced"
+let g:nr_vim_mode="enhanced"
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/plugins_cfg.vim
 ' > ~/.vimrc

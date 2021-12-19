@@ -409,3 +409,25 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
+let s:cp_mode = 1
+fun! CopyModeToggle()
+    if s:cp_mode == 1
+        set nolist
+        set nonumber
+        let s:cp_mode = 0
+        if g:nr_vim_mode != "basic"
+            let g:indentLine_enabled = 0
+            set signcolumn=no
+        endif
+    else
+        set list
+        set number
+        let s:cp_mode = 1
+        if g:nr_vim_mode != "basic"
+            let g:indentLine_enabled = 1
+            set signcolumn=yes
+        endif
+    endif
+endfun
+
+map <leader>cp :call CopyModeToggle()<CR>
