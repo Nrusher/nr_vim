@@ -56,7 +56,7 @@ highlight CursorLine   cterm=NONE ctermbg=239 ctermfg=NONE guibg=NONE guifg=NONE
 highlight CursorColumn cterm=NONE ctermbg=239 ctermfg=NONE guibg=NONE guifg=NONE
 
 set nocompatible
-set mouse=n
+set mouse=
 
 nmap <C-f> :/expand('<cword>')<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
